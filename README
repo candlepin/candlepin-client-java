@@ -1,5 +1,10 @@
 README:
 -------
+
+This is an example client library/cli tool for candlepin
+(http://candlepin-project.org). It is no longer maintained. Instead, please see
+the ruby client library included in candlepin, or python-rhsm
+
 BUILD INFO:
 ----------
 Install buildr(http://buildr.apache.org/) and then run

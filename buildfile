@@ -16,8 +16,7 @@ RESTEASY = [group('jaxrs-api',
                   'resteasy-jaxrs',
                   'resteasy-jackson-provider', 
                   :under => 'org.jboss.resteasy',
-                  :version => '2.0-beta-4'),
-            'javax.persistence:persistence-api:jar:1.0',
+                  :version => '2.3.1.GA'),
             'org.scannotation:scannotation:jar:1.0.2',
             'commons-httpclient:commons-httpclient:jar:3.1',
              'org.slf4j:slf4j-api:jar:1.5.8',
@@ -28,7 +27,7 @@ JACKSON = [group('jackson-core-lgpl',
                  'jackson-mapper-lgpl', 
                  'jackson-jaxrs',
                  :under => 'org.codehaus.jackson',
-                 :version => '1.4.1')]
+                 :version => '1.9.2')]
 JUNIT = ['junit:junit:jar:4.5', 'org.mockito:mockito-all:jar:1.8.1']
 LOG4J = 'log4j:log4j:jar:1.2.14'
 
@@ -38,7 +37,8 @@ COMMONS = ['commons-beanutils:commons-beanutils:jar:1.7.0',
            'commons-pool:commons-pool:jar:1.2',
            'commons-collections:commons-collections:jar:3.1',
            'commons-io:commons-io:jar:1.3.2',
-           'commons-logging:commons-logging:jar:1.1.1', 'commons-lang:commons-lang:jar:2.5']
+           'commons-logging:commons-logging:jar:1.1.1',
+           'commons-lang:commons-lang:jar:2.5']
 JDOM = 'jdom:jdom:jar:1.0'
 DOM4J = ['dom4j:dom4j:jar:1.6.1']
 GETTEXT_COMMONS = 'org.xnap.commons:gettext-commons:jar:0.9.6'
@@ -49,7 +49,8 @@ CHECKSTYLE = ['checkstyle:checkstyle:jar:5.0',
               COMMONS]
 
 
-BOUNCYCASTLE = group('bcprov-jdk16', 'bcpg-jdk16', :under=>'org.bouncycastle', :version=>'1.44')
+BOUNCYCASTLE = group('bcprov-jdk16', 'bcpg-jdk16',
+                     :under=>'org.bouncycastle', :version=>'1.44')
 
 #############################################################################
 # REPOSITORIES
@@ -81,9 +82,6 @@ define "candlepin.client" do
   eclipse.builders 'org.eclipse.jdt.core.javabuilder'
   eclipse.builders 'net.sf.eclipsecs.core.CheckstyleBuilder'
 
-  # download the stuff we do not have in the repositories
-  download artifact('com.wideplay.warp:warp-persist:jar:2.0-20090214') => 'http://jmrodri.fedorapeople.org/ivy/candlepin/com/wideplay/warp/warp-persist/2.0-20090214/warp-persist-2.0-20090214.jar'
-
   # Resource Substitution
   resources.filter.using 'version'=>VERSION_NUMBER,
         'release'=>RELEASE_NUMBER
@@ -93,7 +91,7 @@ define "candlepin.client" do
   #
   resources.from _('po/classes')
   resources.from _('src/main/resources')
-  compile.options.target = '1.6'
+  compile.options.target = '1.7'
   compile.with COMMONS, RESTEASY, LOG4J, BOUNCYCASTLE, JDOM, DOM4J, JACKSON, GETTEXT_COMMONS
  
   #
