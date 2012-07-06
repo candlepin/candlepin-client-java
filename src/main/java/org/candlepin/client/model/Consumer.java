@@ -36,14 +36,14 @@ public class Consumer extends TimeStampedEntity {
     protected String uuid;
     protected IdentityCertificate idCert;
     private Consumer parent;
-    private Long id;
+    private String id;
     private Map<String, String> facts;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

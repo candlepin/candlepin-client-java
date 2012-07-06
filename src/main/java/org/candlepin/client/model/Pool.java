@@ -31,7 +31,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 public final class Pool extends TimeStampedEntity {
 
     /** The id. */
-    private Long id;
+    private String id;
 
     /** The product name. */
     private String productName;
@@ -58,7 +58,7 @@ public final class Pool extends TimeStampedEntity {
     private boolean active;
 
     /** The subscription id. */
-    private Long subscriptionId;
+    private String subscriptionId;
 
     /** The source entitlement. */
     private Entitlement sourceEntitlement;
@@ -71,7 +71,7 @@ public final class Pool extends TimeStampedEntity {
      *
      * @return the id
      */
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -80,7 +80,7 @@ public final class Pool extends TimeStampedEntity {
      *
      * @param id the new id
      */
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -233,7 +233,7 @@ public final class Pool extends TimeStampedEntity {
      *
      * @return the subscription id
      */
-    public Long getSubscriptionId() {
+    public String getSubscriptionId() {
         return subscriptionId;
     }
 
@@ -242,7 +242,7 @@ public final class Pool extends TimeStampedEntity {
      *
      * @param subscriptionId the new subscription id
      */
-    public void setSubscriptionId(Long subscriptionId) {
+    public void setSubscriptionId(String subscriptionId) {
         this.subscriptionId = subscriptionId;
     }
 

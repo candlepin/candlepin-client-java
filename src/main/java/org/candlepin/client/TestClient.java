@@ -42,7 +42,7 @@ public class TestClient {
                 configuration);
             System.out.println("Should not be registered: " +
                 client.isRegistered());
-            String uuid = client.register("admin", "admin", "Fred2", "system");
+            String uuid = client.register("admin", "admin", "Fred2", "system", "fredOwner");
             System.out.println("UUID returned from Register: " + uuid);
             System.out.println("UUID from the getUUID call : " +
                 client.getUUID());
@@ -56,7 +56,7 @@ public class TestClient {
                 client.registerExisting("bk", "password", uuid));
             System.out.println("Register Garbage should fail: " +
                 client.registerExisting("bk", "password", "99"));
-            List<Entitlement> ents = client.bindByPool(6L, 1);
+            List<Entitlement> ents = client.bindByPool("980f", 1);
             System.out.println(ents.size());
             // System.out.println("Unregister should pass: " +
             // client.unRegister());

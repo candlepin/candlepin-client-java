@@ -45,7 +45,7 @@ public class SubscribeCommandTest {
     public void testSinglePoolInput() {
         stubGetOptionValues("p", "1");
         cmd.execute(commandLine, facade);
-        verify(facade, times(1)).bindByPool(1L, 1);
+        verify(facade, times(1)).bindByPool("1", 1);
     }
 
     @Test
@@ -53,9 +53,9 @@ public class SubscribeCommandTest {
         when(commandLine.getOptionValues(eq("p")))
             .thenReturn(new String[] {"1", "2", "4"});
         cmd.execute(commandLine, facade);
-        verify(facade, times(1)).bindByPool(1L, 1);
-        verify(facade, times(1)).bindByPool(2L, 1);
-        verify(facade, times(1)).bindByPool(4L, 1);
+        verify(facade, times(1)).bindByPool("1", 1);
+        verify(facade, times(1)).bindByPool("2", 1);
+        verify(facade, times(1)).bindByPool("4", 1);
     }
 
     @Test
@@ -64,7 +64,7 @@ public class SubscribeCommandTest {
         when(commandLine.getOptionValues(eq("q")))
             .thenReturn(new String[] {"10"});
         cmd.execute(commandLine, facade);
-        verify(facade, times(1)).bindByPool(1L, 10);
+        verify(facade, times(1)).bindByPool("1", 10);
 
     }
 
@@ -75,7 +75,7 @@ public class SubscribeCommandTest {
         when(commandLine.getOptionValues(eq("q")))
             .thenReturn(new String[] {"10", "20", "30"});
         cmd.execute(commandLine, facade);
-        verify(facade, atMost(1)).bindByPool(123L, 10);
+        verify(facade, atMost(1)).bindByPool("123", 10);
     }
 
     @Test
@@ -84,7 +84,7 @@ public class SubscribeCommandTest {
         stubGetOptionValues("pr", "456");
         stubGetOptionValues("r", "abcd-efg-1234");
         cmd.execute(commandLine, facade);
-        verify(facade, times(1)).bindByPool(789L, 1);
+        verify(facade, times(1)).bindByPool("789", 1);
         verify(facade, times(1)).bindByProductId("456", 1);
         verify(facade, times(1)).bindByRegNumber("abcd-efg-1234", 1);
     }
@@ -96,7 +96,7 @@ public class SubscribeCommandTest {
         stubGetOptionValues("r", "abcd-efg-1234");
         stubGetOptionValues("q", "10, 20, 30");
         cmd.execute(commandLine, facade);
-        verify(facade, times(1)).bindByPool(789L, 10);
+        verify(facade, times(1)).bindByPool("789", 10);
         verify(facade, times(1)).bindByProductId("456", 20);
         verify(facade, times(1)).bindByRegNumber("abcd-efg-1234", 30);
     }
@@ -108,9 +108,9 @@ public class SubscribeCommandTest {
         stubGetOptionValues("r", "abcd-efg-1234,qwerty-038763-123");
         stubGetOptionValues("q", "10, 20, 30, 50, 2, 3");
         cmd.execute(commandLine, facade);
-        verify(facade, times(1)).bindByPool(789L, 10);
-        verify(facade, times(1)).bindByPool(123L, 20);
-        verify(facade, times(1)).bindByPool(456L, 30);
+        verify(facade, times(1)).bindByPool("789", 10);
+        verify(facade, times(1)).bindByPool("123", 20);
+        verify(facade, times(1)).bindByPool("456", 30);
 
         verify(facade, times(1)).bindByProductId("456", 50);
         verify(facade, times(1)).bindByProductId("222", 2);

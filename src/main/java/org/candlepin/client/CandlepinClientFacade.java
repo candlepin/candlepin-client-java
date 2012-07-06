@@ -46,7 +46,7 @@ public interface CandlepinClientFacade {
      *
      * @return The UUID of the new consumer.
      */
-    String register(String username, String password, String name, String type);
+    String register(String username, String password, String name, String type, String owner);
 
     /**
      * Updates the consumer information, based on the current jvm info.
@@ -79,7 +79,7 @@ public interface CandlepinClientFacade {
      */
     List<Pool> listPools();
 
-    List<Entitlement> bindByPool(Long poolId, int quantity);
+    List<Entitlement> bindByPool(String poolId, int quantity);
 
     List<Entitlement> bindByProductId(String productId, int quantity);
 
@@ -88,7 +88,7 @@ public interface CandlepinClientFacade {
     List<Entitlement> bindByRegNumber(String regNo, int quantity, String email,
         String defLocale);
 
-    void unBindBySerialNumber(int serialNumber);
+    void unBindBySerialNumber(Long serialNumber);
 
     void unBindAll();
 

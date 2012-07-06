@@ -18,14 +18,14 @@ package org.candlepin.client.model;
  * ConsumerType
  */
 public class ConsumerType extends TimeStampedEntity {
-    protected Long id;
+    protected String id;
     protected String label;
 
     public ConsumerType() {
 
     }
 
-    public ConsumerType(String label, Long id) {
+    public ConsumerType(String label, String id) {
         this.label = label;
         this.id = id;
     }
@@ -39,11 +39,11 @@ public class ConsumerType extends TimeStampedEntity {
         this.label = labelIn;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

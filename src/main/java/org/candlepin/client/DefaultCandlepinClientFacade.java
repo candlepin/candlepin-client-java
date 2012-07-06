@@ -94,7 +94,7 @@ public class DefaultCandlepinClientFacade implements CandlepinClientFacade {
      * .lang.String, java.lang.String, java.lang.String, java.lang.String)
      */
     public String register(String username, String password, String name,
-        String type) {
+        String type, String owner) {
         L.debug("Trying to register consumer with user:{} pass:{}", username,
             password);
         CandlepinConsumerClient client = this.clientWithCredentials(username,
@@ -103,7 +103,7 @@ public class DefaultCandlepinClientFacade implements CandlepinClientFacade {
         cons.setName(name);
         cons.setType(type);
         cons.setFacts(Utils.getHardwareFacts());
-        cons = client.register(cons);
+        cons = client.register(cons, owner);
         recordIdentity(cons);
         return cons.getUuid();
     }
@@ -174,13 +174,7 @@ public class DefaultCandlepinClientFacade implements CandlepinClientFacade {
         return results;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see
-     * org.candlepin.client.CandlepinClientFacade#bindByPool(java
-     * .lang.Long, int)
-     */
-    public List<Entitlement> bindByPool(Long poolId, int quantity) {
+    public List<Entitlement> bindByPool(String poolId, int quantity) {
         L.debug("bindByPool(poolId={})", poolId);
         CandlepinConsumerClient client = clientWithCert();
         return getSafeResult(client.bindByEntitlementID(getUUID(), poolId,
@@ -256,7 +250,7 @@ public class DefaultCandlepinClientFacade implements CandlepinClientFacade {
      * org.candlepin.client.CandlepinClientFacade#unBindBySerialNumber
      * (int)
      */
-    public void unBindBySerialNumber(int serialNumber) {
+    public void unBindBySerialNumber(Long serialNumber) {
         L.debug("unBindBySerialNumber(serialNumber={})", serialNumber);
         CandlepinConsumerClient client = clientWithCert();
         getSafeResult(client.unBindBySerialNumber(getUUID(), serialNumber));

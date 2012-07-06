@@ -30,7 +30,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PROPERTY)
 public class Entitlement extends TimeStampedEntity {
-    private Long id;
+    private String id;
     private Pool pool;
     private Date startDate;
     private String productId;
@@ -38,11 +38,11 @@ public class Entitlement extends TimeStampedEntity {
         new HashSet<EntitlementCertificate>();
     private Boolean free = Boolean.FALSE;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

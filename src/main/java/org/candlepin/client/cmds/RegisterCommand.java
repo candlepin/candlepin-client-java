@@ -63,6 +63,8 @@ public class RegisterCommand extends BaseCommand {
         opts.addOption("n", "name", true, "Specify a name for the consumer");
         opts.addOption("t", "type", true,
             "Specify a type for the consumer, defaults to system");
+        opts.addOption("o", "owner", true,
+            "Specify an owner for this system. Required if you have access to more than one owner.");
         opts.addOption("id", "consumerid", true,
             "Register to an Existing consumer");
         opts.addOption("a", "autosubscribe", false,
@@ -84,6 +86,7 @@ public class RegisterCommand extends BaseCommand {
         String consumerId = cmdLine.getOptionValue("id");
         String consumerName = cmdLine.getOptionValue("n");
         String consumerType = cmdLine.getOptionValue("t");
+        String owner = cmdLine.getOptionValue("o");
 
         if (consumerType == null) {
             consumerType = "system";
@@ -117,7 +120,7 @@ public class RegisterCommand extends BaseCommand {
         else {
             // register with username and password.
             String uuid = client.register(username, password, consumerName,
-                consumerType);
+                consumerType, owner);
             System.out.println("Registered with UUID: " + uuid);
             autoSubscribe(autosubscribe);
 

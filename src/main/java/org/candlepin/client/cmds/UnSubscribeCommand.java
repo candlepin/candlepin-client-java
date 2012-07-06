@@ -74,7 +74,7 @@ public class UnSubscribeCommand extends PrivilegedCommand {
             client.unBindAll();
         }
         else {
-            client.unBindBySerialNumber(Integer.parseInt(serial));
+            client.unBindBySerialNumber(Long.parseLong(serial));
         }
         System.out.println("Unsubscribed successfully");
         client.updateEntitlementCertificates();

@@ -73,7 +73,7 @@ public class SubscribeCommand extends PrivilegedCommand {
         }
         if (!isEmpty(pools)) {
             for (String pool : pools) {
-                client.bindByPool(Long.decode(pool.trim()), Utils.getSafeInt(
+                client.bindByPool(pool.trim(), Utils.getSafeInt(
                     quantity, iter++, 1));
             }
         }

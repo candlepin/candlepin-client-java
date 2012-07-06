@@ -41,7 +41,7 @@ public interface CandlepinConsumerClient {
     @POST
     @Path("consumers")
     @Consumes(MediaType.APPLICATION_JSON)
-    Consumer register(Consumer aConsumer);
+    Consumer register(Consumer aConsumer, @QueryParam("owner") String owner);
 
     @GET
     @Path("consumers/{uuid}")
@@ -71,13 +71,13 @@ public interface CandlepinConsumerClient {
     @GET
     @Path("pools/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    ClientResponse<Pool> getPool(@PathParam("id") Long id);
+    ClientResponse<Pool> getPool(@PathParam("id") String id);
 
     @POST
     @Path("consumers/{uuid}/entitlements")
     @Produces(MediaType.APPLICATION_JSON)
     ClientResponse<List<Entitlement>> bindByEntitlementID(
-        @PathParam("uuid") String uuid, @QueryParam("pool") Long poolId,
+        @PathParam("uuid") String uuid, @QueryParam("pool") String poolId,
         @QueryParam("quantity") int quantity);
 
     @GET
@@ -113,7 +113,7 @@ public interface CandlepinConsumerClient {
     @DELETE
     @Path("consumers/{uuid}/certificates/{serialNo}")
     ClientResponse<Void> unBindBySerialNumber(@PathParam("uuid") String uuid,
-        @PathParam("serialNo") int serialNumber);
+        @PathParam("serialNo") Long serialNumber);
 
     @DELETE
     @Path("consumers/{uuid}/entitlements/")
